@@ -1,4 +1,4 @@
-### 📋 Required
+### 📋 indispensável
 
 De que eu preciso para buildar essa aplicação?
 
