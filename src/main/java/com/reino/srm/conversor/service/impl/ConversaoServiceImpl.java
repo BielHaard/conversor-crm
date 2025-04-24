@@ -1,5 +1,8 @@
 package com.reino.srm.conversor.service.impl;
 
+import com.reino.srm.conversor.exception.MoedaNaoEncontradaException;
+import com.reino.srm.conversor.exception.ProdutoNaoEncontradoException;
+import com.reino.srm.conversor.exception.TaxaCambioNaoEncontradaException;
 import com.reino.srm.conversor.model.Moeda;
 import com.reino.srm.conversor.model.Produto;
 import com.reino.srm.conversor.model.TaxaCambio;
@@ -37,18 +40,18 @@ public class ConversaoServiceImpl implements ConversaoService {
     @Transactional
     public Transacao converter(String produtoNome, String moedaOrigem, String moedaDestino, BigDecimal valor, String reino) {
         Produto produto = produtoRepo.findByNomeIgnoreCase(produtoNome)
-                .orElseThrow(() -> new IllegalArgumentException("Produto não encontrado: " + produtoNome));
+                .orElseThrow(() -> new ProdutoNaoEncontradoException(produtoNome));
 
         Moeda origem = moedaRepo.findBySimboloIgnoreCase(moedaOrigem)
-                .orElseThrow(() -> new IllegalArgumentException("Moeda de origem não encontrada: " + moedaOrigem));
+                .orElseThrow(() -> new MoedaNaoEncontradaException(moedaOrigem, "de origem"));
 
         Moeda destino = moedaRepo.findBySimboloIgnoreCase(moedaDestino)
-                .orElseThrow(() -> new IllegalArgumentException("Moeda de destino não encontrada: " + moedaDestino));
+                .orElseThrow(() -> new MoedaNaoEncontradaException(moedaDestino, "de destino"));
 
         LocalDate hoje = LocalDate.now();
 
         TaxaCambio taxa = taxaRepo.findByMoedaOrigemAndMoedaDestinoAndProdutoAndData(origem, destino, produto, hoje)
-                .orElseThrow(() -> new IllegalArgumentException("Taxa de câmbio não encontrada para o dia de hoje."));
+                .orElseThrow(TaxaCambioNaoEncontradaException::new);
 
         BigDecimal valorConvertido = valor.multiply(taxa.getTaxa());
 
