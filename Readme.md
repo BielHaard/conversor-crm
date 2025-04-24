@@ -10,7 +10,7 @@ Postgresql
 
 ```
 
-### 🔧 Install
+### 🔧 Configuração
 
 Deve ser configurado para o seu Schema e banco no application.properties
  - Como?
