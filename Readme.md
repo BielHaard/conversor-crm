@@ -1,3 +1,30 @@
+### 📋 Required
+
+De que eu preciso para buildar essa aplicação?
+
+```
+Java 17
+Springboot 3.X
+Maven 3.X
+Postgresql
+
+```
+
+### 🔧 Install
+
+Deve ser configurado para o seu Schema e banco no application.properties
+ - Como?
+
+```
+ # JDBC Postgresql.
+
+application.properties
+spring.datasource.url=jdbc:postgresql://localhost:5432/nome_do_banco
+spring.datasource.username=seu_usuario
+spring.datasource.password=sua_senha
+spring.datasource.driver-class-name=org.postgresql.Driver
+```
+
 ### 🧙 Dados iniciais para o Mercado de Pulgas dos Mil Saberes
 
 ```sql
@@ -33,3 +60,23 @@ INSERT INTO taxa_cambio (
 ```
 {URI}/ + swagger-ui/index.html
 ```
+
+## 🛠️ Desenvolvido Com
+
+
+* [Springboot](https://docs.spring.io/spring-framework/reference/index.html) - Framework
+* [Maven](https://maven.apache.org/) - Dependencies Magnament
+
+
+## 📌 Versão
+
+[1.0.0]
+
+## ✒️ Autor
+
+* **Júlio Gabriel Garcia** - *Initial work* - [BielHaard]([https://github.com/BielHaard/)
+* **Júlio Gabriel Garcia** - *Documentation* - [BielHaard](https://github.com/BielHaard/)
+
+
+---
+⌨️ by [Júlio Gabriel Garcia](https://github.com/BielHaard/) 😊
