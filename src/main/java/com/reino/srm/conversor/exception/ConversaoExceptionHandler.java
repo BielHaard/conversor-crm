@@ -3,11 +3,11 @@ package com.reino.srm.conversor.exception;
 import com.reino.srm.conversor.dto.ApiErrorDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 
-@RestControllerAdvice
+@ControllerAdvice
 public class ConversaoExceptionHandler {
 
     @ExceptionHandler(ProdutoNaoEncontradoException.class)
@@ -66,6 +66,7 @@ public class ConversaoExceptionHandler {
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ApiErrorDTO> handleGeneric(Exception ex) {
+        ex.printStackTrace();
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                 .body(new ApiErrorDTO(HttpStatus.INTERNAL_SERVER_ERROR.value(),
                         "Erro interno: " + ex.getMessage()));
