@@ -35,14 +35,14 @@ public class ConversaoServiceImpl implements ConversaoService {
 
     @Override
     @Transactional
-    public Transacao converter(String produtoNome, String moedaOrigem, String moedaDestino, BigDecimal valor, String reino) {
-        Produto produto = produtoRepo.findByNomeIgnoreCase(produtoNome)
-                .orElseThrow(() -> new IllegalArgumentException("Produto não encontrado: " + produtoNome));
+    public Transacao converter(Produto produtoTransaction, Moeda moedaOrigem, Moeda moedaDestino, BigDecimal valor, String reino) {
+        Produto produto = produtoRepo.findByNomeIgnoreCase(produtoTransaction.getNome())
+                .orElseThrow(() -> new IllegalArgumentException("Produto não encontrado: " + produtoTransaction.getNome()));
 
-        Moeda origem = moedaRepo.findBySimboloIgnoreCase(moedaOrigem)
+        Moeda origem = moedaRepo.findBySimboloIgnoreCase(moedaOrigem.getSimbolo())
                 .orElseThrow(() -> new IllegalArgumentException("Moeda de origem não encontrada: " + moedaOrigem));
 
-        Moeda destino = moedaRepo.findBySimboloIgnoreCase(moedaDestino)
+        Moeda destino = moedaRepo.findBySimboloIgnoreCase(moedaDestino.getSimbolo())
                 .orElseThrow(() -> new IllegalArgumentException("Moeda de destino não encontrada: " + moedaDestino));
 
         LocalDate hoje = LocalDate.now();
