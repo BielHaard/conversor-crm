@@ -1,5 +1,7 @@
 package com.reino.srm.conversor.dto;
 
+import com.reino.srm.conversor.model.Moeda;
+import com.reino.srm.conversor.model.Produto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,9 +14,9 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ConversaoRequestDTO {
-    private String produto;
-    private String moedaOrigem;
-    private String moedaDestino;
+    private Produto produto;
+    private Moeda moedaOrigem;
+    private Moeda moedaDestino;
     private BigDecimal valor;
     private String reino;
 }
