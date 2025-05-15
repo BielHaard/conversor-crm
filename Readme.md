@@ -1,4 +1,4 @@
-### 📋 Required
+### 📋 indispensável
 
 De que eu preciso para buildar essa aplicação?
 
@@ -10,7 +10,7 @@ Postgresql
 
 ```
 
-### 🔧 Install
+### 🔧 Configuração
 
 Deve ser configurado para o seu Schema e banco no application.properties
  - Como?
